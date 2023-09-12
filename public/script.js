@@ -165,4 +165,3 @@ leaveButton.addEventListener("click", () => {
   // Redirect the user to the homepage or another suitable page
   window.location.href = "/";
 });
-

@@ -321,7 +321,7 @@ messages {
   }
 
   .options {
-    flex-direction: column; /* Stack options vertically */
+    flex-direction: row; /* Stack options vertically */
     align-items: center;
   }
 
