@@ -23,7 +23,7 @@ showChat.addEventListener("click", () => {
 const user = prompt("Enter your name");
 
 var peer = new Peer(user, {
-  host: 'videocallwebapp-0mph.onrender.com',
+  host: 'https://webvideocallapp.onrender.com',
   port: 443,
   path: '/peerjs',
   secure: true,
