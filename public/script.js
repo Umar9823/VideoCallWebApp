@@ -147,21 +147,39 @@ socket.on("createMessage", (message, userName) => {
 
 // for leave the meeting 
 
+// for leave the meeting 
+
+
+// leaveButton.addEventListener("click", () => {
+//   // Close the peer connection
+ 
+// });
+
+
+// for leave the meeting 
+
 const leaveButton = document.querySelector("#leaveButton");
 
 leaveButton.addEventListener("click", () => {
-  // Close the peer connection
-  peer.disconnect();
+  const confirmLeave = confirm("Are you sure you want to leave the meeting?");
   
-  // Remove your video stream from the grid
-  myVideoStream.getTracks().forEach((track) => {
-    track.stop();
-  });
-  myVideo.remove();
+  if (confirmLeave) {
+    // Close the peer connection
+    peer.disconnect();
   
-  // Inform the server that you're leaving the room
-  socket.emit("user-disconnected", ROOM_ID, user);
+    // Remove your video stream from the grid
+    myVideoStream.getTracks().forEach((track) => {
+      track.stop();
+    });
+    myVideo.remove();
   
-  // Redirect the user to the homepage or another suitable page
-  window.location.href = "/";
+    // Inform the server that you're leaving the room
+    socket.emit("user-disconnected", ROOM_ID, user);
+
+    // Remove the video grid
+    videoGrid.innerHTML = "";
+
+    // Redirect the user to the homepage or another suitable page
+    window.location.href = "./demo.html";
+  }
 });
