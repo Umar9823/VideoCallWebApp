@@ -49,7 +49,7 @@
 }
 
 video {
-  height: 300px;
+  height: 212px;
   border-radius: 1rem;
   margin: 0.5rem;
   width: 400px;
@@ -57,6 +57,15 @@ video {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
+}
+
+#video-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  scroll-behavior: smooth;
+  max-height: 400px; /* Set a maximum height for the video grid */
+  overflow-y: auto; /* Enable vertical scrolling for overflowing content */
 }
 
 .options {
@@ -100,11 +109,25 @@ video {
 
 .main__chat_window {
   flex-grow: 1;
-  overflow-y: scroll;
+  overflow-y: auto; /* Enable vertical scrolling for overflowing content */
+  max-height: 300px; /* Limit chat window height on smaller screens */
 }
 
 .main__chat_window::-webkit-scrollbar {
-  display: none;
+  width: 8px;
+}
+
+.main__chat_window::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.main__chat_window::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.main__chat_window::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .main__message_container {
@@ -128,36 +151,31 @@ video {
   display: flex;
   flex-direction: column;
   margin: 1.5rem;
+  overflow-y: auto; /* Enable vertical scrolling for overflowing content */
+  max-height: 300px; /* Limit chat window height on smaller screens */
 }
 
 .message {
   display: flex;
   flex-direction: column;
+  background-color: #f0f0f0; /* Add a light background color to messages */
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 10px;
 }
 
 .message > b {
-  color: #eeeeee;
+  color: #333;
   display: flex;
   align-items: center;
   text-transform: capitalize;
 }
 
-.message > b > i {
-  margin-right: 0.7rem;
-  font-size: 1.5rem;
-}
-
 .message > span {
-  background-color: #eeeeee;
-  margin: 1rem 0;
-  padding: 1rem;
+  color: #555;
+  padding: 0.5rem;
   border-radius: 5px;
-}
-
-#video-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  word-wrap: break-word; /* Wrap long text in messages */
 }
 
 #showChat {
@@ -191,174 +209,33 @@ video {
     display: flex;
   }
 }
-.header__back {
-  display: none;
-  position: absolute;
-  font-size: 1.3rem;
-  top: 17px;
-  left: 28px;
-  color: #fff;
-}
 
-@media (max-width: 700px) {
-  .header__back {
-    display: block;
-  }
-}
-
-messages {
-  display: flex;
-  flex-direction: column;
-  margin: 1.5rem;
-  overflow-y: auto; /* Add a scrollbar for overflow */
-  max-height: 300px; /* Limit chat window height on smaller screens */
-}
-
-.message {
-  display: flex;
-  flex-direction: column;
-  background-color: #f0f0f0; /* Add a light background color to messages */
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border-radius: 10px;
-}
-
-.message > b {
-  color: #333;
-  display: flex;
-  align-items: center;
-  text-transform: capitalize;
-}
-
-.message > span {
-  color: #555;
-  padding: 0.5rem;
-  border-radius: 5px;
-  word-wrap: break-word; /* Wrap long text in messages */
-}
-
-/* Style the chat input */
-.main__message_container > input {
-  height: 40px;
-  font-size: 1rem;
-  border-radius: 5px;
-  padding-left: 10px;
-  border: none;
-  margin-right: 10px;
-}
-
-/* Style the send button */
-#send {
-  background-color: var(--primary-color);
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-/* Adjust message container for mobile */
-@media (max-width: 700px) {
-  .main__message_container {
-    padding: 1rem;
-    flex-direction: column; /* Stack input and send button */
-  }
-
-  .main__message_container > input {
-    margin-right: 0; /* Remove margin for input */
-    margin-bottom: 10px; /* Add space below input */
-  }
-}
-
-
-/* Responsiveness  */
-/* Ensure the chat window has a maximum height and is scrollable */
-.main__chat_window {
-  flex-grow: 1;
-  overflow-y: auto; /* Enable vertical scrolling for overflowing content */
-  max-height: 300px; /* Limit chat window height on smaller screens */
-}
-
-/* Hide the default browser scrollbar */
-.main__chat_window::-webkit-scrollbar {
-  width: 8px; /* Set the width of the scrollbar */
-}
-
-/* Style the scrollbar track (the background) */
-.main__chat_window::-webkit-scrollbar-track {
-  background-color: transparent; /* Make the scrollbar track transparent */
-}
-
-/* Style the scrollbar thumb (the draggable part) */
-.main__chat_window::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3); /* Color of the scrollbar thumb */
-  border-radius: 10px; /* Round the edges of the thumb */
-}
-
-/* Style the scrollbar thumb when hovering over it */
-.main__chat_window::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.5); /* Hover color of the scrollbar thumb */
-}
-
-
-/* Apply styles for screens up to 768px (tablets) */
-@media (max-width: 768px) {
-  .main__left {
-    flex: 1; /* Take up full width on smaller screens */
-  }
-
-  .videos__group {
-    justify-content: space-around; /* Adjust video spacing */
-    align-items: center;
-    flex-wrap: wrap; /* Allow videos to wrap to the next line */
-  }
-
-  video {
-    width: 100%; /* Make videos full-width on smaller screens */
-    max-width: 300px; /* Limit video width */
-  }
-
-  .options {
-    flex-direction: row; /* Stack options vertically */
-    align-items: center;
-  }
-
-  .options__left, .options__right {
-    margin: 0; /* Remove margin */
-  }
-}
-
-/* Apply styles for screens up to 480px (mobiles) */
 @media (max-width: 480px) {
   .main__left, .main__right {
-    width: 100%; /* Take up full width on mobile screens */
+    width: 100%;
   }
 
   .options__button {
-    width: 40px; /* Adjust button size for small screens */
+    width: 40px;
     height: 40px;
     font-size: 1rem;
   }
 
   .main__message_container > input {
-    flex: 1; /* Take up remaining width */
-    margin-right: 0; /* Remove margin */
+    flex: 1;
+    margin-right: 0;
   }
 
   .main__message_container > #send {
-    width: 40px; /* Adjust button size for small screens */
+    width: 40px;
     height: 40px;
   }
 
   .main__chat_window {
-    max-height: none; /* Allow chat window to expand */
+    max-height: none;
   }
 
   .header__back {
-    display: block; /* Show back button */
+    display: block;
   }
-
-  /* Additional styles as needed for mobile screens */
 }
