@@ -23,7 +23,7 @@ showChat.addEventListener("click", () => {
 const user = prompt("Enter your name");
 
 var peer = new Peer(user, {
-  host: 'https://webvideocallapp.onrender.com',
+  host: 'webvideocallapp.onrender.com',
   port: 443,
   path: '/peerjs',
   secure: true,
@@ -72,6 +72,7 @@ const addVideoStream = (video, stream) => {
     video.play();
     videoGrid.append(video);
 
+    // Automatically scroll to the bottom when a new video is added
     videoGrid.scrollTop = videoGrid.scrollHeight;
   });
 };
@@ -144,20 +145,6 @@ socket.on("createMessage", (message, userName) => {
     </div>`;
 });
 
-
-// for leave the meeting 
-
-// for leave the meeting 
-
-
-// leaveButton.addEventListener("click", () => {
-//   // Close the peer connection
- 
-// });
-
-
-// for leave the meeting 
-
 const leaveButton = document.querySelector("#leaveButton");
 
 leaveButton.addEventListener("click", () => {
@@ -183,6 +170,3 @@ leaveButton.addEventListener("click", () => {
     window.location.href = "./demo.html";
   }
 });
-
-
-
